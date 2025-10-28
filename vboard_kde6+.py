@@ -189,6 +189,13 @@ class VirtualKeyboard(Gtk.Window):
             self.set_default_size(self.width, self.height)
 
         self.header = Gtk.HeaderBar()
+        esc_box = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=0)
+        esc_button = Gtk.Button(label="ESC")
+        esc_button.set_size_request(80, -1) 
+        esc_button.connect("clicked", lambda _: self.device.emit(uinput.KEY_ESC, 1) or time.sleep(0.05) or self.device.emit(uinput.KEY_ESC, 0))
+        esc_button.get_style_context().add_class("esc-button")
+        esc_box.pack_start(esc_button, False, False, 0)
+        self.header.pack_start(esc_box)
         self.header.set_show_close_button(True)
         self.buttons=[]
         self.modifier_buttons={}
@@ -498,6 +505,12 @@ class VirtualKeyboard(Gtk.Window):
             border: 0px;
             box-shadow: none;
 
+        }}
+
+        .esc-button {{
+            min-width: 80px;
+            font-weight: bold;
+            margin-right: 10px;
         }}
 
         headerbar button{{
