@@ -84,8 +84,8 @@ wget https://github.com/Varfolomeus/vboard/releases/download/v1_22/vboard_gnome_
 
 ```bash choose your case
 python3 vboard.py
-python3 ~/vboard_kde6+.py
-python3 ~/vboard_gnome_48+.py
+python3 vboard_kde6+.py
+python3 vboard_gnome_48+.py
 ```
 
 ### **4. Create shortcut (optional)**  
