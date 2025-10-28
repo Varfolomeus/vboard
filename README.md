@@ -35,21 +35,21 @@ Install on GNOME  `python-uinput steam-devices` packages, GNOME Extensions Tool 
 sudo apt install python3-uinput steam-devices
 ```
 
-  additional for GNOME **!!! applicable on every distribution !!!**
-  Installing the Shyriiwook Gnome extension requires a little trick, as it is prohibited for some security reasons.
-  ```bash
-  sudo apt update
-  sudo apt install gnome-shell-extensions
-  ```
-  go to web page 
-  https://extensions.gnome.org/extension/6691/shyriiwook/
-  and install Shyriiwook Gnome extension using webpage interface
-  to make switchable on/off Shyriiwook Gnome extension switcher do the following trick:
-    ```bash
-    gsettings set org.gnome.shell disable-extension-version-validation true
-    ```
-  Run `Gnome Extensions` from app-menu
-  find and turn on this extension
+additional for GNOME **!!! applicable on every distribution !!!**
+Installing the Shyriiwook Gnome extension requires a little trick, as it is prohibited for some security reasons.
+```bash
+sudo apt update
+sudo apt install gnome-shell-extensions
+```
+go to web page 
+https://extensions.gnome.org/extension/6691/shyriiwook/
+and install Shyriiwook Gnome extension using webpage interface
+to make switchable on/off Shyriiwook Gnome extension switcher do the following trick:
+```bash
+gsettings set org.gnome.shell disable-extension-version-validation true
+```
+Run `Gnome Extensions` from app-menu
+find and turn on this extension
 
 
 **For Fedora-based distributions:**  
