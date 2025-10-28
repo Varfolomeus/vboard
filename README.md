@@ -2,13 +2,14 @@
 *A virtual keyboard for Linux with Wayland support and extensive customization options.*
 
 
-<img src="https://github.com/user-attachments/assets/66e9a879-c677-429f-bd11-503d10e63c2b" width="400">
+<img src="https://github.com/Varfolomeus/vboard/releases/download/v1_22/vboard_with_locale_switching.png" width="400">
 
 ## Overview
 vboard is a lightweight, customizable virtual keyboard designed for Linux systems with Wayland support. It provides an on-screen keyboard solution that's especially useful for:
 
 - Touchscreen devices without physical keyboards
 - Systems with malfunctioning physical keyboards
+- For only mouse / air-mouse usage of any computer - logon to system not supported but you can configure autologon and awakening without password required,
 - Accessibility needs
 - Kiosk applications
 
@@ -20,15 +21,36 @@ The keyboard supports customizable colors, opacity settings, and can be easily m
 - **Modifier key support**: Use Shift, Ctrl, Alt and Super keys
 - **Hold for repetitive clicks**: Keep holding the mouse button to trigger repeated clicks
 - **Compact interface**: Headerbar with minimal controls to save screen space
+- **Multilingual support**: In options section where you changing color and transparemcy you can switch locales (US, UA, RU)
+- **Program reads and syncronizes system settings**: at start
 - **Always-on-top**: Stays above other windows for easy access
 
 ### **1. Install Dependencies**  
-Install  `python-uinput steam-devices` packages using your package manager:  
+Install on KDE  `python-uinput steam-devices` packages using your package manager:  
+Install on GNOME  `python-uinput steam-devices` packages, GNOME Extensions Tool and `Shyriiwook Gnome extension` using your package manager and Internet browser:  
+
 
 **For Debian/Ubuntu-based distributions:**  
 ```bash
 sudo apt install python3-uinput steam-devices
 ```
+
+  additional for GNOME **!!! applicable on every distribution !!!**
+  Installing the Shyriiwook Gnome extension requires a little trick, as it is prohibited for some security reasons.
+  ```bash
+  sudo apt update
+  sudo apt install gnome-shell-extensions
+  ```
+  go to web page 
+  https://extensions.gnome.org/extension/6691/shyriiwook/
+  and install Shyriiwook Gnome extension using webpage interface
+  to make switchable on/off Shyriiwook Gnome extension switcher do the following trick:
+    ```bash
+    gsettings set org.gnome.shell disable-extension-version-validation true
+    ```
+  Run `Gnome Extensions` from app-menu
+  find and turn on this extension
+
 
 **For Fedora-based distributions:**  
 ```bash
@@ -46,22 +68,62 @@ Retrieve the latest version of `vboard.py` using `wget`:
 ```bash
 wget https://github.com/mdev588/vboard/releases/download/v1.21/vboard.py
 ```
+multilocale version
+KDE users
+```bash
+wget https://github.com/Varfolomeus/vboard/releases/download/v1_22/vboard_kde6+.py
+```
+GNOME v48 users
+```bash
+wget https://github.com/Varfolomeus/vboard/releases/download/v1_22/vboard_gnome_48+.py
+```
 
 
 
 ### **3. Run**  
 
-```bash
+```bash choose your case
 python3 vboard.py
+python3 ~/vboard_kde6+.py
+python3 ~/vboard_gnome_48+.py
 ```
 
 ### **4. Create shortcut (optional)**  
-
+#### English only
 ```bash
 mkdir -p ~/.local/share/applications/
 cat > ~/.local/share/applications/vboard.desktop <<EOF
 [Desktop Entry]
 Exec=bash -c 'python3 ~/vboard.py'
+Icon=preferences-desktop-keyboard
+Name=Vboard
+Terminal=false
+Type=Application
+Categories=Utility
+NoDisplay=false
+EOF
+```
+#### for multilocale versions:
+KDE users
+```bash
+mkdir -p ~/.local/share/applications/
+cat > ~/.local/share/applications/vboard.desktop <<EOF
+[Desktop Entry]
+Exec=bash -c 'python3 ~/vboard_kde6+.py'
+Icon=preferences-desktop-keyboard
+Name=Vboard
+Terminal=false
+Type=Application
+Categories=Utility
+NoDisplay=false
+EOF
+```
+#### GNOME users
+```bash
+mkdir -p ~/.local/share/applications/
+cat > ~/.local/share/applications/vboard.desktop <<EOF
+[Desktop Entry]
+Exec=bash -c 'python3 ~/vboard_gnome_48+.py'
 Icon=preferences-desktop-keyboard
 Name=Vboard
 Terminal=false
@@ -84,9 +146,11 @@ When launched, vboard presents a compact keyboard with a minimal interface. The 
 
 #### Interface Controls
 - ☰ (menu) - Toggle visibility of other interface controls
+- **Background dropdown** - Change the keyboard background color
 - + - Increase opacity
 - - - Decrease opacity
-- **Background dropdown** - Change the keyboard background color
+- US/UA/RU - Change locale to write on diferent language
+
 
 ### Configuration
 vboard saves its settings to ~/.config/vboard/settings.conf. This configuration file stores:
@@ -98,7 +162,7 @@ You can manually edit this file or use the built-in interface controls to custom
 ### Customizing Keyboard Layout
 The keyboard layout is defined in the rows list in the source code. To modify the layout:
 1. Download the source code
-2. Locate the rows definition (around line 175)
+2. Locate the rows definition (around line 175) search line with `#locales` `#rows depended on locale` if I did it you would to
 3. Modify the key arrangement as needed
 4. The format follows a nested list structure where each inner list represents a row of keys
 
