@@ -545,7 +545,8 @@ class VirtualKeyboard(Gtk.Window):
         #grid button {{
                     border: none ;
                     background-image: none;
-
+                    padding: 0px;
+                    margin: 0px;
                 }}
 
         button {{
@@ -598,15 +599,17 @@ class VirtualKeyboard(Gtk.Window):
                 self.row_buttons.append(button)
                 if key_event in self.modifiers:
                     self.modifier_buttons[key_event] = button
-                if key_label == "Space": width=6
-                elif key_label == "CapsLock": width=2
-                elif key_label == "Shift_R" : width=2
-                elif key_label == "Shift_L" : width=2
-                elif key_label == "Backspace": width=2
+                if key_label == "Space": width=12
+                elif key_label == "CapsLock": width=3
+                elif key_label == "Shift_R" : width=4
+                elif key_label == "Shift_L" : width=4
+                elif key_label == "Backspace": width=5
                 elif key_label == "`": width=1
-                elif key_label == "\\" : width=2
-                elif key_label == "Enter": width=2
-                else: width=1
+                elif key_label == "'" and current_keymap in (keymapList[2], keymapList[3]): width=1
+                elif key_label == "Ё": width=1
+                elif key_label in ("\\", "Ґ") : width=4
+                elif key_label == "Enter": width=5
+                else: width=2
 
                 grid.attach(button, col, row_index, width, 1)
                 col += width
